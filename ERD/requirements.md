@@ -38,4 +38,4 @@ I used [Draw.io](https://app.diagrams.net/) to create the ER diagram.
 ## ER Diagram
 Here is a visual representation of the ERD:
 
-![Airbnb ER Diagram](./ALX AIRBNB.drawio.png)
+![Airbnb ER Diagram](./airbnb.png)

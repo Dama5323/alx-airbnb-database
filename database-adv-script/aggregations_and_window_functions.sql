@@ -17,3 +17,14 @@ FROM
 GROUP BY 
     property_id;
 
+-- Query 3: Use ROW_NUMBER to assign a unique rank to each property
+SELECT 
+    property_id,
+    COUNT(*) AS total_bookings,
+    ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC) AS row_num
+FROM 
+    bookings
+GROUP BY 
+    property_id;
+
+

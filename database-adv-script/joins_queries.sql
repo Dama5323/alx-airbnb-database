@@ -1,45 +1,17 @@
-SELECT 
-    Booking.booking_id,
-    Booking.property_id,
-    Booking.start_date,
-    Booking.end_date,
-    User.first_name,
-    User.last_name,
-    User.email
-FROM Booking
-INNER JOIN User ON Booking.user_id = User.user_id;
+-- 1. INNER JOIN: all bookings and their respective users
+SELECT bookings.id AS booking_id, users.id AS user_id, users.name, bookings.property_id, bookings.start_date
+FROM bookings
+INNER JOIN users ON bookings.user_id = users.id
+ORDER BY bookings.id;
 
+-- 2. LEFT JOIN: all properties and their reviews (even if no reviews)
+SELECT properties.id AS property_id, properties.name, reviews.id AS review_id, reviews.rating
+FROM properties
+LEFT JOIN reviews ON properties.id = reviews.property_id
+ORDER BY properties.id;
 
-SELECT 
-    Property.property_id,
-    Property.name,
-    Property.description,
-    Review.rating,
-    Review.comment
-FROM Property
-LEFT JOIN Review ON Property.property_id = Review.property_id;
-
-
--- All users and their bookings
-SELECT 
-    User.user_id,
-    User.first_name,
-    Booking.booking_id,
-    Booking.start_date,
-    Booking.end_date
-FROM User
-LEFT JOIN Booking ON User.user_id = Booking.user_id
-
-UNION
-
--- All bookings even if they don't match a user
-SELECT 
-    User.user_id,
-    User.first_name,
-    Booking.booking_id,
-    Booking.start_date,
-    Booking.end_date
-FROM Booking
-RIGHT JOIN User ON Booking.user_id = User.user_id;
-
-
+-- 3. FULL OUTER JOIN: all users and all bookings (even if not linked)
+SELECT users.id AS user_id, users.name, bookings.id AS booking_id, bookings.start_date
+FROM users
+FULL OUTER JOIN bookings ON users.id = bookings.user_id
+ORDER BY users.id;

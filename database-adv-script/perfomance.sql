@@ -1,3 +1,5 @@
+-- Performance analysis
+EXPLAIN
 SELECT 
     b.id AS booking_id,
     u.name AS user_name,
